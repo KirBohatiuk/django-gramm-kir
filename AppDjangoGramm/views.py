@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .models import MyUser
+from .models import MyUser, PostModel
+from django.contrib.auth.decorators import login_required
 from . import forms
 
 
@@ -40,17 +41,18 @@ def user_logout(request):
     logout(request)
     return redirect('index')
 
-
+@login_required
 def create_post(request):
     if request.method == 'POST':
-        form = forms.PostForm(request.POST)
+        form = forms.PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('')
+            return redirect('feed')
     else:
         form = forms.PostForm()
     return render(request, 'AppDjangoGramm/post.html', {'form': form})
 
-
+@login_required
 def feed(request):
-    return HttpResponse('feed')
+    posts = PostModel.objects.all()
+    return render(request, 'AppDjangoGramm/feed.html', {'posts': posts})

@@ -125,3 +125,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'AppDjangoGramm.MyUser'
+
+MEDIA_ROOT = 'AppDjangoGramm/files/covers'
+MEDIA_URL = 'AppDjangoGramm/files/covers/'
