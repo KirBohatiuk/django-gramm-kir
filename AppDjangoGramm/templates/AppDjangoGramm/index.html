@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <h1>DjangoGramm</h1>
+  {% if request.user.is_authenticated %}
+    <p>Hi, {{ request.user.username }}</p>
+    <a href="{% url 'logout' %}">Logout</a>
+    <ul>
+      {% for user in users %}
+        <li>{{ user.username }}</li>
+      {% endfor %}
+  </ul>
+  {% else %}
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Signup</a>
+  {% endif %}
+</body>
+</html>
