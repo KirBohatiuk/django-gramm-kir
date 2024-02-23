@@ -16,9 +16,15 @@ def register(request):
         form = forms.RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            if user:
+                login(request, user)
+                return redirect('index')
+            return redirect('register')
     else:
-        form = forms.RegistrationForm
+        form = forms.RegistrationForm()
     return render(request, 'AppDjangoGramm/register.html', {'form': form})
 
 

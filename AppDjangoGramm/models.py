@@ -5,6 +5,8 @@ from cloudinary import CloudinaryImage
 
 class MyUser(AbstractUser):
     username = models.CharField(max_length=100, unique=True)
+    email = models.EmailField(unique=True)
+    email_is_verified = models.BooleanField(default=False)
     pass
 
 
