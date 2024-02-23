@@ -72,7 +72,7 @@ def create_post(request):
 
 @login_required
 def feed(request):
-    posts = PostModel.objects.all()
+    posts = PostModel.objects.order_by('-post_creation_date')[:5]
     return render(request, 'AppDjangoGramm/feed.html', {'posts': posts})
 
 
