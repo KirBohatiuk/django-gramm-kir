@@ -76,25 +76,6 @@ def feed(request):
     return render(request, 'AppDjangoGramm/feed.html', {'posts': posts})
 
 
-# def verify_email(request):
-#     if request.method == 'POST':
-#         if request.user.email.email_is_verified != True:
-#             current_site = get_current_site(request)
-#             user = request.user
-#             email = request.user.email
-#             subject = 'Verify email'
-#             message = render_to_string('AppDjangoGramm/verify_email_message.html', {
-#                     'request': request,
-#                     'user': user,
-#                     'domain': current_site.domain,
-#                     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-#                     'token': account_activation_token.make_token(user),
-#                 })
-#             email = EmailMessage(subject, message, to=[email])
-#             email.content_subtype = 'html'
-#             email.send()
-#             return redirect('verify-email-done')
-#     return render(request, 'AppDjangoGramm/verify_email_message.html')
 def verify_email(request):
     if request.method == "POST":
         if request.user.email_is_verified != True:

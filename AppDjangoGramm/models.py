@@ -11,7 +11,10 @@ class MyUser(AbstractUser):
 
 
 class PostModel(models.Model):
+    owner = models.ForeignKey(
+        MyUser,
+        on_delete=models.CASCADE,
+        blank=True,
+    )
     text = models.CharField(max_length=200)
     image = models.ImageField(blank=True, null=True)
-
-# Create your models here.
