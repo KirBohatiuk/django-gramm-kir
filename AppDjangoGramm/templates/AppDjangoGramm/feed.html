@@ -11,6 +11,7 @@
       <li>{{ post.text }}</li>
       {% if post.image %}
         <li><img src="{{ post.image.url }}"></li>
+        <li>{{ post.post_creation_date }}</li>
       {% endif %}
     {% endfor %}
   </ul>

@@ -21,3 +21,10 @@ class PostModel(models.Model):
     text = models.CharField(max_length=200)
     image = models.ImageField(blank=True, null=True)
     post_creation_date = models.DateTimeField(auto_now_add=True, verbose_name="Creation date")
+
+
+# class ProfileModel(models.Model):
+#     owner = models.OneToOneField(
+#         MyUser,
+#         on_delete=models.CASCADE,
+#     )

@@ -64,7 +64,9 @@ def create_post(request):
     if request.method == 'POST':
         form = forms.PostForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            post.owner = request.user
+            post.save()
             return redirect('feed')
     else:
         form = forms.PostForm()
