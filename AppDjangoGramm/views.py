@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .models import MyUser, PostModel
+from .models import MyUser, PostModel, ProfileModel
 from django.contrib.auth.decorators import login_required
 from . import forms
 from django.template.loader import render_to_string
@@ -117,11 +117,31 @@ def verify_email_confirm(request, uidb64, token):
         user.email_is_verified = True
         user.save()
         messages.success(request, 'Your email has been verified.')
-        return redirect('verify-email-complete')
+        return redirect('create-profile')
     else:
         messages.warning(request, 'The link is invalid.')
     return render(request, 'AppDjangoGramm/verify_email_confirm.html')
 
 
-def verify_email_complete(request):
-    return render(request, 'AppDjangoGramm/verify_email_complete.html')
+def create_profile(request):
+    if request.method == 'POST':
+        form = forms.ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            user_profile = form.save(commit=False)
+            user_profile.owner = request.user
+            user_profile.save()
+            return redirect('own-profile')
+        return redirect('create-profile')
+    else:
+        form = forms.ProfileForm()
+    return render(request, 'AppDjangoGramm/create_profile.html', {'form': form})
+
+
+def own_profile(request):
+    user = request.user
+    user_profile = user.profile
+    context = {
+        'username': user.username,
+        'profile': user_profile,
+    }
+    return render(request, 'AppDjangoGramm/own_profile.html', context)

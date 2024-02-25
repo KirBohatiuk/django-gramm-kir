@@ -5,18 +5,16 @@
   <title>Title</title>
 </head>
 <body>
-  <h1>DjangoGramm</h1>
+  <h1 align="center">Welcome to DjangoGramm!</h1>
   {% if request.user.is_authenticated %}
-    <p>Hi, {{ request.user.username }}</p>
+    <p>Hi, {{ request.user.username }}!</p>
     <a href="{% url 'logout' %}">Logout</a>
-    <ul>
-      {% for user in users %}
-        <li>{{ user.username }}</li>
-      {% endfor %}
-  </ul>
+    <p><a href="{% url 'feed' %}">Feed</a></p>
+    <p><a href="{% url 'own-profile' %}">Your profile</a></p>
+    <p><a href="{% url 'post' %}">Create post</a></p>
   {% else %}
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'register' %}">Signup</a>
+    <p><a href="{% url 'login' %}">login</a></p>
+    <p><a href="{% url 'register' %}">Create an account</a></p>
   {% endif %}
 </body>
 </html>

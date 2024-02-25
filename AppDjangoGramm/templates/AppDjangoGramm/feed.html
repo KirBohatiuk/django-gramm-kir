@@ -6,14 +6,16 @@
 </head>
 <body>
   <h1>Feed</h1>
-  <ul>
+  <dl >
     {% for post in posts %}
-      <li>{{ post.text }}</li>
+      <dt>{{ post.owner }}</dt>
       {% if post.image %}
-        <li><img src="{{ post.image.url }}"></li>
-        <li>{{ post.post_creation_date }}</li>
+        <dd><img width="50%" height="50%" src="{{ post.image.url }}"></dd>
+        <dd>{{ post.text}}</dd>
+        <dd>{{ post.post_creation_date }}</dd>
+        <div style="border-bottom: 1px solid black;"></div>
       {% endif %}
     {% endfor %}
-  </ul>
+  </dl>
 </body>
 </html>

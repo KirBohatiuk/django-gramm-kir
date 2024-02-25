@@ -126,14 +126,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'AppDjangoGramm.MyUser'
 
-MEDIA_ROOT = 'AppDjangoGramm/files/covers'
+MEDIA_ROOT = 'AppDjangoGramm/files/covers/'
 MEDIA_URL = 'AppDjangoGramm/files/covers/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "notificationsformydjangoapps@gmail.com"
-EMAIL_HOST_PASSWORD = "twpe hvbw uyfm eaip"
+EMAIL_HOST_USER = "kirbohatiuk@gmail.com"
+EMAIL_HOST_PASSWORD = "jflg srdh bsrt voaw"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = "Delight notificationsformydjangoapps@gmail.com"
+DEFAULT_FROM_EMAIL = "Hallo kirbohatiuk@gmail.com"
