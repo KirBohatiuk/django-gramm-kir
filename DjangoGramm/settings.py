@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'DjangoGramm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'AppDjangoGramm',
+        'USER': 'postgres',
+        'PASSWORD': 'vq34v2gx',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
