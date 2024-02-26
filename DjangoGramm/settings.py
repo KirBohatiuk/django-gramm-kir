@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3k&j1n-w%4#7c4-k+5clvgb@z!9&_l1schonhf*!hd2gplon+^'
+SECRET_KEY = 'django-insecure-3k&j1n-w%4#7c4-k+5clvgb@z!9&_l1schonhf*!hd2gplon+^'#
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'DjangoGramm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',#
         'NAME': 'AppDjangoGramm',
         'USER': 'postgres',
         'PASSWORD': 'vq34v2gx',
