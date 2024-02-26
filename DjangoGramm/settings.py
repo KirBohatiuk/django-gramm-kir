@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3k&j1n-w%4#7c4-k+5clvgb@z!9&_l1schonhf*!hd2gplon+^'#
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -77,12 +79,12 @@ WSGI_APPLICATION = 'DjangoGramm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',#
-        'NAME': 'AppDjangoGramm',
-        'USER': 'postgres',
-        'PASSWORD': 'vq34v2gx',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': str(os.getenv('DB_ENGINE')),
+        'NAME': str(os.getenv('DB_NAME')),
+        'USER': str(os.getenv('DB_USER')),
+        'PASSWORD': str(os.getenv('DB_PASSWORD')),
+        'HOST': str(os.getenv('DB_HOST')),
+        'PORT': str(os.getenv('DB_PORT')),
     }
 }
 
@@ -121,23 +123,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = str(os.getenv('STATIC_URL'))
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'AppDjangoGramm.MyUser'
+AUTH_USER_MODEL = str(os.getenv('AUTH_USER_MODEL'))
 
-MEDIA_ROOT = 'AppDjangoGramm/files/covers/'
-MEDIA_URL = 'AppDjangoGramm/files/covers/'
+MEDIA_ROOT = str(os.getenv('MEDIA_ROOT'))
+MEDIA_URL = str(os.getenv('MEDIA_URL'))
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = str(os.getenv('EMAIL_BACKEND'))
 
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "kirbohatiuk@gmail.com"
-EMAIL_HOST_PASSWORD = "jflg srdh bsrt voaw"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = "Hallo kirbohatiuk@gmail.com"
+EMAIL_HOST = str(os.getenv('EMAIL_HOST'))
+EMAIL_HOST_USER = str(os.getenv('EMAIL_HOST_USER'))
+EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+DEFAULT_FROM_EMAIL = str(os.getenv('DEFAULT_FROM_EMAIL'))
