@@ -6,6 +6,10 @@
 </head>
 <body>
   <h1>New Post</h1>
+  <a href="{% url 'logout' %}">Logout</a>
+  <p><a href="{% url 'own-profile' %}">Your profile</a></p>
+  <p><a href="{% url 'feed' %}">Create post</a></p>
+  <p><a href="{% url 'index' %}">Home</a></p>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}

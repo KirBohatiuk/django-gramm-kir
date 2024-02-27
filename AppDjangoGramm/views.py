@@ -13,7 +13,6 @@ from django.contrib import messages
 from .tokens import account_activation_token
 
 
-
 def index(request):
     users = MyUser.objects.all()
     return render(request, 'AppDjangoGramm/index.html', {"users": users})
@@ -59,6 +58,7 @@ def user_logout(request):
     logout(request)
     return redirect('index')
 
+
 @login_required
 def create_post(request):
     if request.method == 'POST':
@@ -71,6 +71,11 @@ def create_post(request):
     else:
         form = forms.PostForm()
     return render(request, 'AppDjangoGramm/post.html', {'form': form})
+
+
+def post_preview(request, post):
+    pass
+
 
 @login_required
 def feed(request):

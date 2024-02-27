@@ -5,6 +5,10 @@
   <title>Profile</title>
 </head>
 <body>
+  <a href="{% url 'logout' %}">Logout</a>
+  <p><a href="{% url 'feed' %}">Your profile</a></p>
+  <p><a href="{% url 'post' %}">Create post</a></p>
+  <p><a href="{% url 'index' %}">Home</a></p>
   <p>{{ profile.avatar.url }}</p>
   <p>{{ profile.bio }}</p>
   <img src="{{ profile.avatar.url }}">

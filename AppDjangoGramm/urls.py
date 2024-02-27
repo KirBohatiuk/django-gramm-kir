@@ -15,4 +15,5 @@ urlpatterns = [
     path('verify-email-confirm/<uidb64>/<token>/', views.verify_email_confirm, name='verify-email-confirm'),
     path('create-profile/', views.create_profile, name='create-profile'),
     path('own-profile/', views.own_profile, name='own-profile'),
+    path('post/post-preview/', views.post_preview, name='post-preview')
 ]

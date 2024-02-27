@@ -6,6 +6,10 @@
 </head>
 <body>
   <h1>Feed</h1>
+  <a href="{% url 'logout' %}">Logout</a>
+  <p><a href="{% url 'own-profile' %}">Your profile</a></p>
+  <p><a href="{% url 'post' %}">Create post</a></p>
+  <p><a href="{% url 'index' %}">Home</a></p>
   <dl >
     {% for post in posts %}
       <dt>{{ post.owner }}</dt>
