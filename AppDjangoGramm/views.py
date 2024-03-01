@@ -54,6 +54,7 @@ def user_login(request):
     return render(request, 'AppDjangoGramm/login.html', {'form': form})
 
 
+@login_required
 def user_logout(request):
     logout(request)
     return redirect('index')
@@ -67,14 +68,18 @@ def create_post(request):
             post = form.save(commit=False)
             post.owner = request.user
             post.save()
-            return redirect('feed')
+            request.session['post_pk'] = post.pk
+            return redirect('post-preview')
     else:
         form = forms.PostForm()
     return render(request, 'AppDjangoGramm/post.html', {'form': form})
 
 
-def post_preview(request, post):
-    pass
+@login_required(redirect_field_name='login')
+def post_preview(request):
+    post_pk = request.session.get('post_pk')
+    post = PostModel.objects.get(pk=post_pk)
+    return render(request, 'AppDjangoGramm/post_preview.html', {'post': post})
 
 
 @login_required
@@ -83,6 +88,7 @@ def feed(request):
     return render(request, 'AppDjangoGramm/feed.html', {'posts': posts})
 
 
+@login_required
 def verify_email(request):
     if request.method == "POST":
         if request.user.email_is_verified != True:
@@ -108,10 +114,12 @@ def verify_email(request):
     return render(request, 'AppDjangoGramm/verify_email.html')
 
 
+@login_required
 def verify_email_done(request):
     return render(request, 'AppDjangoGramm/verify_email_done.html')
 
 
+@login_required
 def verify_email_confirm(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
@@ -128,6 +136,7 @@ def verify_email_confirm(request, uidb64, token):
     return render(request, 'AppDjangoGramm/verify_email_confirm.html')
 
 
+@login_required
 def create_profile(request):
     if request.method == 'POST':
         form = forms.ProfileForm(request.POST, request.FILES)
@@ -142,6 +151,7 @@ def create_profile(request):
     return render(request, 'AppDjangoGramm/create_profile.html', {'form': form})
 
 
+@login_required
 def own_profile(request):
     user = request.user
     user_profile = user.profile
