@@ -1,7 +1,9 @@
-from django.urls import path
-from . import views
-from DjangoGramm import settings
 from django.conf.urls.static import static
+from django.urls import path
+
+from DjangoGramm import settings
+
+from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),

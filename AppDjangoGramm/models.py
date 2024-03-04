@@ -1,7 +1,7 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.utils import timezone
 from cloudinary import CloudinaryImage
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+from django.utils import timezone
 
 
 class MyUser(AbstractUser):
@@ -12,17 +12,17 @@ class MyUser(AbstractUser):
     pass
 
 
-class PostModel(models.Model):
+class Post(models.Model):
     owner = models.ForeignKey(
         MyUser,
         on_delete=models.CASCADE,
     )
     text = models.CharField(verbose_name="post text", max_length=200)
     image = models.ImageField(verbose_name="post image", blank=True, null=True)
-    post_creation_date = models.DateTimeField(auto_now_add=True, verbose_name="Creation date")
+    creation_date = models.DateTimeField(auto_now_add=True, verbose_name="Creation date")
 
 
-class ProfileModel(models.Model):
+class Profile(models.Model):
     owner = models.OneToOneField(
         MyUser,
         on_delete=models.CASCADE,

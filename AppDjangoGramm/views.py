@@ -1,15 +1,16 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
-from .models import MyUser, PostModel, ProfileModel
-from django.contrib.auth.decorators import login_required
-from . import forms
-from django.template.loader import render_to_string
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_str
-from django.core.mail import EmailMessage
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+
+from . import forms
+from .models import MyUser, Post, Profile
 from .tokens import account_activation_token
 
 
@@ -68,7 +69,7 @@ def create_post(request):
             post = form.save(commit=False)
             post.owner = request.user
             post.save()
-            request.session['post_pk'] = post.pk
+            request.session['post_id'] = post.pk
             return redirect('post-preview')
     else:
         form = forms.PostForm()
@@ -77,18 +78,17 @@ def create_post(request):
 
 @login_required(redirect_field_name='login')
 def post_preview(request):
-    post_pk = request.session.get('post_pk')
-    post = PostModel.objects.get(pk=post_pk)
+    post_pk = request.session.get('post_id')
+    post = Post.objects.get(pk=post_pk)
     return render(request, 'AppDjangoGramm/post_preview.html', {'post': post})
 
 
 @login_required
 def feed(request):
-    posts = PostModel.objects.order_by('-post_creation_date')[:5]
+    posts = Post.objects.order_by('-post_creation_date')[:5]
     return render(request, 'AppDjangoGramm/feed.html', {'posts': posts})
 
 
-@login_required
 def verify_email(request):
     if request.method == "POST":
         if request.user.email_is_verified != True:
@@ -114,12 +114,10 @@ def verify_email(request):
     return render(request, 'AppDjangoGramm/verify_email.html')
 
 
-@login_required
 def verify_email_done(request):
     return render(request, 'AppDjangoGramm/verify_email_done.html')
 
 
-@login_required
 def verify_email_confirm(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))

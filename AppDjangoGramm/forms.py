@@ -1,6 +1,7 @@
-from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import MyUser, PostModel, ProfileModel
+from django.contrib.auth.forms import UserCreationForm
+
+from .models import MyUser, Post, Profile
 
 
 class RegistrationForm(UserCreationForm):
@@ -16,12 +17,12 @@ class LoginForm(forms.Form):
 
 class PostForm(forms.ModelForm):
     class Meta:
-        model = PostModel
+        model = Post
         fields = ['text', 'image']
 
 
 class ProfileForm(forms.ModelForm):
 
     class Meta:
-        model = ProfileModel
+        model = Profile
         fields = ('avatar', 'full_name', 'bio')

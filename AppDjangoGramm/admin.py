@@ -1,8 +1,10 @@
 from django.contrib import admin
-from .models import MyUser, PostModel, ProfileModel
+
+from .models import MyUser, Post, Profile
+
 # Register your models here.
 
 
 admin.site.register(MyUser)
-admin.site.register(PostModel)
-admin.site.register(ProfileModel)
+admin.site.register(Post)
+admin.site.register(Profile)
