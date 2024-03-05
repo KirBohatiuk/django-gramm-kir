@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="{% static 'AppDjangoGramm/Static.css' %}">
+</head>
+<body>
+  <div>
+    <div>
+      <h1>Django Gramm</h1>
+    </div>
+    <div>
+    {% if request.user.is_authenticated %}
+      <p>Hi, {{ request.user.username }}!</p>
+      <a href="{% url 'logout' %}">Logout</a>
+      <p><a href="{% url 'feed' %}">Feed</a></p>
+      <p><a href="{% url 'own-profile' %}">Your profile</a></p>
+      <p><a href="{% url 'post' %}">Create post</a></p>
+    {% else %}
+      <p><a href="{% url 'login' %}">login</a></p>
+      <p><a href="{% url 'register' %}">Create an account</a></p>
+    {% endif %}
+    </div>
+  </div>
+</body>
+</html>
