@@ -2,17 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Verify Email Confirm</title>
+  <style>
+    html {
+      background-color: honeydew;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .alert {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      color: #31708f;
+      background-color: #d9edf7;
+      border-color: #bce8f1;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     {% if messages %}
-        {% for message in messages %}
-            <div class="alert">
-                {{ message }}
-            </div>
-        {% endfor %}
+      {% for message in messages %}
+        <div class="alert">
+          {{ message }}
+        </div>
+      {% endfor %}
     {% endif %}
-</div>
+  </div>
 </body>
 </html>

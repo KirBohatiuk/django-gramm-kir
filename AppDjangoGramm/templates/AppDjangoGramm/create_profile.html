@@ -2,15 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  {% extends 'AppDjangoGramm/base.html' %}
+  <title>Create Profile</title>
 </head>
 <body>
+  {% extends 'AppDjangoGramm/base.html' %}
   {% block content %}
+    <h1>Create Profile</h1>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create</button>
+    <table>
+      <tr>
+        <td class="td_for_post">
+          <p>Full Name: {{ form.full_name }}</p>
+          <p> Profile Bio: {{ form.bio}}</p>
+        </td>
+        <td class="td_for_post">
+          <p>Profile avatar:</p>
+          <p> {{ form.avatar }}</p></td>
+      </tr>
+    </table>
+    <h1><button type="submit">Create Profile</button></h1>
   </form>
- {% endblock %}
+  {% endblock %}
 </body>
 </html>

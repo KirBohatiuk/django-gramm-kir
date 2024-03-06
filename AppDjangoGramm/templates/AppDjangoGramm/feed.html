@@ -8,8 +8,9 @@
 <body>
   {% block content %}
     <h1>Feed page</h1>
-    <table>
     {% for post in posts %}
+    <table>
+
       <tr>
         <td class="small_td_for_post">
           <img width="80%" src="{{ post.owner.profile.avatar.url }}">
