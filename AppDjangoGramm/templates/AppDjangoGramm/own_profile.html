@@ -3,14 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <title>Profile</title>
+  {% extends 'AppDjangoGramm/base.html' %}
 </head>
 <body>
-  <a href="{% url 'logout' %}">Logout</a>
-  <p><a href="{% url 'feed' %}">Your profile</a></p>
-  <p><a href="{% url 'post' %}">Create post</a></p>
-  <p><a href="{% url 'index' %}">Home</a></p>
-  <p>{{ profile.avatar.url }}</p>
-  <p>{{ profile.bio }}</p>
-  <img src="{{ profile.avatar.url }}">
+  {% block content %}
+    <table>
+      <tr>
+        <td class="small_td_for_post"><img width="80%" src="{{ profile.avatar.url }}"></td>
+        <td class="td_for_post">
+          <p>{{ profile.owner.username }}</p>
+          <p>{{ profile.owner.email }}</p>
+          <p>{{ profile.full_name }}</p>
+          <p>{{ profile.bio}}</p>
+        </td>
+      </tr>
+    </table>
+    <h1>Your Posts</h1>
+    <table>
+    {% for post in posts %}
+      <tr>
+        <td class="small_td_for_post">
+          <img width="80%" src="{{ post.owner.profile.avatar.url }}">
+        </td>
+        <td class="td_for_post" rowspan="2">
+          <img width="80%" src="{{ post.image.url }}">
+        </td>
+      </tr>
+      <tr>
+        <td class="small_td_for_post">
+          {{ post.owner }}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="td_for_post_text">
+          <p>{{ post.text }} - {{ post.creation_date }}</p>
+        </td>
+      </tr>
+    {% endfor %}
+    </table>
+  {% endblock %}
 </body>
 </html>

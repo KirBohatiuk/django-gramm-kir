@@ -3,22 +3,94 @@ html{
 }
 
 body{
-    margin: 100px 40px 10px;
-}
-
-div{
-    font-family: Arial; color: green; text-align: justify; font-size: 16px;
+    margin: 0px 0px 0px 0px;
 }
 
 h1{
-    text-align: left;
+    font-family: Arial;
+    text-align: center;
     font-size: 26px;
 }
 
-h1:first-line{
-    margin: 15px;
-}
 
 a{
     font-size: 16px;
+}
+
+table{
+    background-color: black;
+    width: 100%;
+}
+
+
+
+.button-cell {
+    cursor: pointer; /* Show pointer cursor on hover */
+    padding: 10px 20px; /* Padding for the button */
+}
+
+.button-cell:hover {
+    background-color: #0056b3; /* Change background color on hover */
+}
+
+
+.td_for_post{
+    background-color: honeydew;
+    font-size: 26px;
+    width: 80%;
+    text-align: center;
+}
+
+.td_for_post_text{
+    background-color: honeydew;
+    font-size: 26px;
+    width: 80%;
+    text-align: justify;
+}
+
+.small_td_for_post{
+    background-color: honeydew;
+    font-size: 26px;
+    width: 20%;
+    text-align: center;
+}
+
+td{
+    background-color: darkgray;
+    font-size: 26px;
+    width: 17%;
+    height: 75px;
+    text-align: center;
+}
+
+
+.small-image {
+    width: 20%;
+    height: 20%;
+}
+
+
+
+.post-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.post-table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
+
+.post-image {
+  max-width: 100px;
+  height: auto;
+}
+
+p{
+    margin: 15px;
+    text-align: justify;
+}
+
+p:first-line{
+    margin: 15px;
 }

@@ -3,17 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Post Preview</title>
+  {% extends 'AppDjangoGramm/base.html' %}
 </head>
 <body>
-  <h1>Page for post preview</h1>
-    <dl>
-      <dt>{{ post.owner }}</dt>
-      {% if post.image %}
-          <dd><img width="50%" height="50%" src="{{ post.image.url }}"></dd>
-      {% endif %}
-      <dd>{{ post.text}}</dd>
-      <dd>{{ post.post_creation_date }}</dd>
-      <div style="border-bottom: 1px solid black;"></div>
-  </dl>
-</body>
-</html>
+  {% block content %}
+    <h1>Post preview</h1>
+    <table>
+      <tr>
+        <td class="small_td_for_post">
+          <img width="80%" src="{{ post.owner.profile.avatar.url }}">
+        </td>
+        <td class="td_for_post" rowspan="2">
+          <img width="80%" src="{{ post.image.url }}">
+        </td>
+      </tr>
+      <tr>
+        <td class="small_td_for_post">
+          {{ post.owner }}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="td_for_post_text">
+          <p>{{ post.text }} - {{ post.creation_date }}</p>
+        </td>
+      </tr>
+    </table>
+    {% endblock %}

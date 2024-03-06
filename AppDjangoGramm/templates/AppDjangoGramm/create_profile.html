@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  {% extends 'AppDjangoGramm/base.html' %}
 </head>
 <body>
+  {% block content %}
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Create</button>
   </form>
+ {% endblock %}
 </body>
 </html>

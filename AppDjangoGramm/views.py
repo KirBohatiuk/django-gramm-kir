@@ -85,7 +85,7 @@ def post_preview(request):
 
 @login_required
 def feed(request):
-    posts = Post.objects.order_by('-post_creation_date')[:5]
+    posts = Post.objects.order_by('-creation_date')[:5]
     return render(request, 'AppDjangoGramm/feed.html', {'posts': posts})
 
 
@@ -153,8 +153,10 @@ def create_profile(request):
 def own_profile(request):
     user = request.user
     user_profile = user.profile
+    posts = Post.objects.filter(owner=user).all()
     context = {
         'username': user.username,
         'profile': user_profile,
+        'posts': posts,
     }
     return render(request, 'AppDjangoGramm/own_profile.html', context)

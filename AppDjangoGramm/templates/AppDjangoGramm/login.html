@@ -5,12 +5,39 @@
   <title>Login Form</title>
 </head>
 <body>
-  <h1>Login Form</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log in</button>
-    <a href="{% url 'register' %}">Don`t have an account</a>
-  </form>
+  <!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Login Form | CodingLab</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'AppDjangoGramm/Static2.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="title"><span>Login Form</span></div>
+        <form method="post" action="">
+          {% csrf_token %}
+          <div class="row">
+            <i class="fas fa-user"></i>
+            {{form.username}}
+          </div>
+          <div class="row">
+            <i class="fas fa-lock"></i>
+            {{ form.password }}
+          </div>
+          <div class="row button">
+            <input type="submit" value="Login">
+          </div>
+          <div class="signup-link">Not a member? <a href="{% url 'register' %}">Signup now</a></div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
 </body>
 </html>
