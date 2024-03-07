@@ -126,6 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = str(os.getenv('STATIC_URL'))
+STATIC_ROOT = 'AppDjangoGramm/mystatic/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -148,3 +149,14 @@ DEFAULT_FROM_EMAIL = str(os.getenv('DEFAULT_FROM_EMAIL'))
 
 
 LOGIN_URL = '/AppDjangoGramm/login/'
+
+
+AWS_ACCESS_KEY_ID = 'AKIAQ3EGUCJSCSEZ4T76 '
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'djbacetkb'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'eu-north-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

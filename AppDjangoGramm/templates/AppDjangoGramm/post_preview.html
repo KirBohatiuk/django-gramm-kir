@@ -13,9 +13,11 @@
         <td class="small_td_for_post">
           <img width="80%" src="{{ post.owner.profile.avatar.url }}">
         </td>
-        <td class="td_for_post" rowspan="2">
-          <img width="80%" src="{{ post.image.url }}">
-        </td>
+        {% if post.image %}
+          <td class="td_for_post" rowspan="2">
+            <img width="80%" src="{{ post.image.url }}">
+          </td>
+        {% endif %}
       </tr>
       <tr>
         <td class="small_td_for_post">
